@@ -33,7 +33,7 @@ class LogisticRegression(object):
             )
 
         self.p_y_give_x = T.nnet.softmax(T.dot(input,self.W) + self.b)
-
+        self.input = input
         self.y_pred = T.argmax(self.p_y_give_x, axis=1)
         self.params = [self.W,self.b]
 
@@ -51,6 +51,10 @@ class LogisticRegression(object):
             return T.mean(T.neq(self.y_pred,y))#'''返回两者是否相等,然后去平均值，这样就得到了正确率'''
         else:
             raise NotImplementedError()
+
+    def predict(self):
+        pp = T.nnet.softmax(T.dot(self.input,self.W)+self.b)
+        return pp
 
 
 

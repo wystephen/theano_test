@@ -19,6 +19,10 @@ def read_csv():
     train_y  = train_set[:,0]
     train_x = train_set[:,1:]
     test_x = test_set[:,:]
+    mean = np.mean(train_x)
+    std = np.std(train_x)
+    train_x = (train_x - mean) /std
+    test_x = (test_x - mean )/ std
     return train_x,train_y,test_x
 
 if __name__ == '__main__':
