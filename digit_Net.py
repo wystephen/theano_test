@@ -65,16 +65,22 @@ class CNN():
             n_out = 200,
             activation = T.tanh
         )
-
-        self.layer4 = LogisticRegression(
+        self.layer5 = HiddenLayer(
+            rng,
             input = self.layer3.output,
             n_in = 200,
+            n_out =50,
+        )
+
+        self.layer4 = LogisticRegression(
+            input = self.layer5.output,
+            n_in = 50,
             n_out = 10
         )
 
         self.errors = self.layer4.errors
 
-        self.params = self.layer4.params + self.layer3.params+ self.layer2.params + self.layer1.params + self.layer0.params
+        self.params = self.layer4.params +self.layer5.params +  self.layer3.params+ self.layer2.params + self.layer1.params + self.layer0.params
 
     def __getstate__(self):
         weights = [p.get_value() for p in self.params]
