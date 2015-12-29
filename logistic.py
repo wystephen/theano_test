@@ -45,7 +45,6 @@ class LogisticRegression(object):
             raise TypeError(
                 'y should have the same shape as self.y_pred',
                 ('y',y.type,'y_pred',self.y_pred.type)
-
             )
         if y.dtype.startswith('int'):
             return T.mean(T.neq(self.y_pred,y))#'''返回两者是否相等,然后去平均值，这样就得到了正确率'''
